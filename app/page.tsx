@@ -27,8 +27,7 @@ export default function Home() {
   const [currentQuote, setCurrentQuote] = useState(0)
   const [soundEnabled, setSoundEnabled] = useState(false)
 // Add this below your useState declarations
-  type Star = { left: string; top: string; size: string; delay: string; duration: string };
-  const [stars, setStars] = useState<Star[]>([]);
+  const [stars, setStars] = useState<{ left: string; top: string; size: string; delay: string; duration: string }[]>([]);
 
 useEffect(() => {
   // Generate stars only once after component mounts
@@ -280,7 +279,7 @@ useEffect(() => {
         </div>
       </div>
 
-      {/* Footer */}
+{/* Footer */}
 <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-4 z-10">
   <button
     onClick={() => window.open("https://www.buymeacoffee.com/timenova", "_blank")}
