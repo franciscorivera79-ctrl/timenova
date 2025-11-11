@@ -277,20 +277,13 @@ export default function Home() {
 
       {/* Footer */}
       <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-4 z-10">
-        <button
-          onClick={() => {
-            const newWindow = window.open(
-              "https://www.buymeacoffee.com/timenova",
-              "_blank",
-              "noopener,noreferrer"
-            )
-            if (newWindow) newWindow.opener = null
-          }}
+        <Link
+          href="/support"
           className="flex items-center gap-2 text-sm text-purple-200 hover:text-white transition-colors bg-white/5 hover:bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm border border-white/10"
         >
           <Coffee className="w-4 h-4" />
           Buy me a coffee
-        </button>
+        </Link>
       </div>
     </div>
   )
