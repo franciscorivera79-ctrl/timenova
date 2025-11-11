@@ -26,20 +26,20 @@ export default function Home() {
   const [isTimerRunning, setIsTimerRunning] = useState(false)
   const [currentQuote, setCurrentQuote] = useState(0)
   const [soundEnabled, setSoundEnabled] = useState(false)
-// Add this below your useState declarations
+  // Add this below your useState declarations
   const [stars, setStars] = useState<{ left: string; top: string; size: string; delay: string; duration: string }[]>([]);
 
-useEffect(() => {
-  // Generate stars only once after component mounts
-  const generatedStars = Array.from({ length: 80 }, () => ({
-    left: Math.random() * 100 + "%",
-    top: Math.random() * 100 + "%",
-    size: Math.random() * 3 + 1 + "px",
-    delay: Math.random() * 30 + "s",
-    duration: Math.random() * 60 + 30 + "s",
-  }));
-  setStars(generatedStars);
-}, []);
+  useEffect(() => {
+    // Generate stars only once after component mounts
+    const generatedStars = Array.from({ length: 80 }, () => ({
+      left: Math.random() * 100 + "%",
+      top: Math.random() * 100 + "%",
+      size: Math.random() * 3 + 1 + "px",
+      delay: Math.random() * 30 + "s",
+      duration: Math.random() * 60 + 30 + "s",
+    }));
+    setStars(generatedStars);
+  }, []);
   // Update clock
   useEffect(() => {
     const updateClock = () => {
@@ -92,22 +92,22 @@ useEffect(() => {
       return () => clearInterval(interval)
     }
   }, [mode])
-// 🔊 Ambient sound control
-useEffect(() => {
-  const audio = new Audio("/sounds/space-ambience.mp3");
-  audio.loop = true;
-  audio.volume = 0.4; // volumen bajo
-  if (soundEnabled) {
-    audio.play().catch(() => {
-      console.warn("Autoplay blocked until user interaction");
-    });
-  } else {
-    audio.pause();
-  }
+  // 🔊 Ambient sound control
+  useEffect(() => {
+    const audio = new Audio("/sounds/space-ambience.mp3");
+    audio.loop = true;
+    audio.volume = 0.4; // volumen bajo
+    if (soundEnabled) {
+      audio.play().catch(() => {
+        console.warn("Autoplay blocked until user interaction");
+      });
+    } else {
+      audio.pause();
+    }
 
-  // Limpieza: detener sonido al desmontar
-  return () => audio.pause();
-}, [soundEnabled]);
+    // Limpieza: detener sonido al desmontar
+    return () => audio.pause();
+  }, [soundEnabled]);
   const resetTimer = () => {
     setTimerMinutes(25)
     setTimerSeconds(0)
@@ -128,22 +128,22 @@ useEffect(() => {
       </div>
 
       {/* Stars (rendered once after mount) */}
-<div className="absolute inset-0 overflow-hidden pointer-events-none">
-  {stars.map((star, i) => (
-    <div
-      key={i}
-      className="absolute bg-white rounded-full opacity-60 animate-star-drift-mid"
-      style={{
-        width: star.size,
-        height: star.size,
-        left: star.left,
-        top: star.top,
-        animationDelay: star.delay,
-        animationDuration: star.duration,
-      }}
-    />
-  ))}
-</div>
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {stars.map((star, i) => (
+          <div
+            key={i}
+            className="absolute bg-white rounded-full opacity-60 animate-star-drift-mid"
+            style={{
+              width: star.size,
+              height: star.size,
+              left: star.left,
+              top: star.top,
+              animationDelay: star.delay,
+              animationDuration: star.duration,
+            }}
+          />
+        ))}
+      </div>
 
       {/* Main content */}
       <div className="relative z-10 flex flex-col items-center justify-center gap-8 px-4 w-full">
@@ -216,9 +216,8 @@ useEffect(() => {
         <div className="flex flex-wrap gap-3 justify-center items-center">
           <Button
             onClick={() => setMode("clock")}
-            className={`bg-white/10 hover:bg-white/20 text-white border backdrop-blur-sm transition-all ${
-              mode === "clock" ? "border-purple-400 bg-white/20" : "border-white/20"
-            }`}
+            className={`bg-white/10 hover:bg-white/20 text-white border backdrop-blur-sm transition-all ${mode === "clock" ? "border-purple-400 bg-white/20" : "border-white/20"
+              }`}
             size="sm"
           >
             <Clock className="w-4 h-4 mr-2" />
@@ -226,9 +225,8 @@ useEffect(() => {
           </Button>
           <Button
             onClick={() => setMode("focus")}
-            className={`bg-white/10 hover:bg-white/20 text-white border backdrop-blur-sm transition-all ${
-              mode === "focus" ? "border-purple-400 bg-white/20" : "border-white/20"
-            }`}
+            className={`bg-white/10 hover:bg-white/20 text-white border backdrop-blur-sm transition-all ${mode === "focus" ? "border-purple-400 bg-white/20" : "border-white/20"
+              }`}
             size="sm"
           >
             <Timer className="w-4 h-4 mr-2" />
@@ -239,9 +237,8 @@ useEffect(() => {
               setMode("timer")
               resetTimer()
             }}
-            className={`bg-white/10 hover:bg-white/20 text-white border backdrop-blur-sm transition-all ${
-              mode === "timer" ? "border-purple-400 bg-white/20" : "border-white/20"
-            }`}
+            className={`bg-white/10 hover:bg-white/20 text-white border backdrop-blur-sm transition-all ${mode === "timer" ? "border-purple-400 bg-white/20" : "border-white/20"
+              }`}
             size="sm"
           >
             <Timer className="w-4 h-4 mr-2" />
@@ -249,9 +246,8 @@ useEffect(() => {
           </Button>
           <Button
             onClick={() => setMode("quotes")}
-            className={`bg-white/10 hover:bg-white/20 text-white border backdrop-blur-sm transition-all ${
-              mode === "quotes" ? "border-purple-400 bg-white/20" : "border-white/20"
-            }`}
+            className={`bg-white/10 hover:bg-white/20 text-white border backdrop-blur-sm transition-all ${mode === "quotes" ? "border-purple-400 bg-white/20" : "border-white/20"
+              }`}
             size="sm"
           >
             <Quote className="w-4 h-4 mr-2" />
@@ -279,16 +275,23 @@ useEffect(() => {
         </div>
       </div>
 
-{/* Footer */}
-<div className="absolute bottom-4 left-0 right-0 flex justify-center gap-4 z-10">
-  <button
-    onClick={() => window.open("https://www.buymeacoffee.com/timenova", "_blank")}
-    className="flex items-center gap-2 text-sm text-purple-200 hover:text-white transition-colors bg-white/5 hover:bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm border border-white/10"
-  >
-    <Coffee className="w-4 h-4" />
-    Buy me a coffee
-  </button>
-</div>
+      {/* Footer */}
+      <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-4 z-10">
+        <button
+          onClick={() => {
+            const newWindow = window.open(
+              "https://www.buymeacoffee.com/timenova",
+              "_blank",
+              "noopener,noreferrer"
+            )
+            if (newWindow) newWindow.opener = null
+          }}
+          className="flex items-center gap-2 text-sm text-purple-200 hover:text-white transition-colors bg-white/5 hover:bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm border border-white/10"
+        >
+          <Coffee className="w-4 h-4" />
+          Buy me a coffee
+        </button>
+      </div>
     </div>
   )
 }
