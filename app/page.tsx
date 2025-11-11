@@ -282,7 +282,7 @@ useEffect(() => {
       {/* Footer */}
       <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-4 z-10">
         <a
-          href="https://buymeacoffee.com"
+          href="buymeacoffee.com/timenova"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 text-sm text-purple-200 hover:text-white transition-colors bg-white/5 hover:bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm border border-white/10"
